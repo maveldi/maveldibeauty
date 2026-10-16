@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>[hidden]{display:none!important}img{max-width:100%}</style>
+</head>
+<body>
+<title>MAVELDI Beauty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400..700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ground:#F7F4F5;
+    --surface:#FFFFFF;
+    --surface-2:#EBF7F1;
+    --ink:#1D1A1E;
+    --ink-soft:#6B6470;
+    --ink-faint:#9A93A0;
+    --line:rgba(29,26,30,.10);
+    --accent:#FF4C5E;
+    --accent-ink:#FFFFFF;
+    --mint:#1FA684;
+    --mint-ink:#FFFFFF;
+    --shadow: 0 1px 2px rgba(29,26,30,.05), 0 14px 34px -18px rgba(29,26,30,.20);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#17141A;
+      --surface:#211D26;
+      --surface-2:#182922;
+      --ink:#F5F1F6;
+      --ink-soft:#C3B9C9;
+      --ink-faint:#8B8092;
+      --line:rgba(245,241,246,.13);
+      --accent:#FF7A87;
+      --mint:#49E0B6; --mint-ink:#0B2A20;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 14px 34px -18px rgba(0,0,0,.65);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#17141A;
+    --surface:#211D26;
+    --surface-2:#182922;
+    --ink:#F5F1F6;
+    --ink-soft:#C3B9C9;
+    --ink-faint:#8B8092;
+    --line:rgba(245,241,246,.13);
+    --accent:#FF7A87;
+    --mint:#49E0B6; --mint-ink:#0B2A20;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 14px 34px -18px rgba(0,0,0,.65);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+
+  body{
+    margin:0;
+    background:var(--ground);
+    color:var(--ink);
+    font-family:"Nunito", system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:"Fredoka", "Nunito", system-ui, sans-serif;
+    font-weight:600;
+    text-wrap:balance;
+    margin:0;
+  }
+
+  .eyebrow{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.11em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 .5rem;
+  }
+
+  a{color:inherit;}
+
+  /* ---------- header ---------- */
+  header.masthead{
+    position:sticky; top:0; z-index:20;
+    background:color-mix(in srgb, var(--ground) 86%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .masthead-inner{
+    max-width:1180px; margin:0 auto; padding:.9rem 1.5rem;
+    display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;
+  }
+  .wordmark{
+    font-family:"Fredoka", sans-serif; font-weight:600;
+    font-size:1.4rem; letter-spacing:.01em; white-space:nowrap;
+  }
+  .wordmark b{font-weight:600; color:var(--accent);}
+  nav.pills{display:flex; gap:.4rem; flex-wrap:wrap; flex:1 1 260px;}
+  nav.pills a{
+    font-size:.82rem; font-weight:700; padding:.45rem .85rem;
+    border-radius:99px; border:1px solid var(--line);
+    text-decoration:none; color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  nav.pills a span{color:var(--mint); font-weight:800;}
+  nav.pills a:hover{border-color:var(--accent); color:var(--accent);}
+
+  @media (max-width: 640px){
+    header.masthead{transition:transform .25s ease;}
+    header.masthead.hide{transform:translateY(-100%);}
+    .masthead-inner{display:grid; grid-template-columns:1fr; align-items:center; gap:.45rem; padding:.55rem 1rem .6rem;}
+    .wordmark{grid-column:1; grid-row:1; font-size:1.2rem;}
+    nav.pills{
+      grid-column:1 / -1; grid-row:2; flex:none; flex-wrap:nowrap; overflow-x:auto;
+      margin:0 -1rem; padding:0 1rem; scrollbar-width:none;
+    }
+    nav.pills::-webkit-scrollbar{display:none;}
+    nav.pills a{flex:none; font-size:.78rem; padding:.35rem .7rem;}
+    .category-band{scroll-margin-top:3.6rem;}
+  }
+  @media (prefers-reduced-motion: reduce){ header.masthead{transition:none;} }
+
+  /* ---------- hero ---------- */
+  .hero{max-width:1180px; margin:0 auto; padding:2rem 1.5rem 2.6rem;}
+  .hero h1{
+    font-size:clamp(2rem, 4.2vw, 3.4rem);
+    line-height:1.08; max-width:17ch;
+  }
+  .hero p.lede{
+    max-width:52ch; margin:1.1rem 0 0; color:var(--ink-soft);
+    font-size:1.05rem; line-height:1.6;
+  }
+  .stats{display:flex; gap:2.2rem; flex-wrap:wrap; margin-top:2.1rem;}
+  .stat b{
+    display:block; font-family:"Fredoka",sans-serif; font-size:2.1rem; font-weight:600;
+    font-variant-numeric:tabular-nums;
+  }
+  .stat span{font-size:.78rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.08em;}
+  @media (max-width: 640px){
+    .stats{flex-wrap:nowrap; gap:1.2rem;}
+    .stat b{font-size:1.7rem;}
+    .stat span{font-size:.62rem; letter-spacing:.05em;}
+  }
+
+  /* ---------- category bands ---------- */
+  .category-band{scroll-margin-top:4.5rem;}
+  .category-band:nth-of-type(even){background:var(--surface-2);}
+  .category{max-width:1180px; margin:0 auto; padding:2.8rem 1.5rem;}
+  .category-head{display:flex; justify-content:space-between; align-items:flex-end; gap:1.5rem; margin-bottom:1.7rem; flex-wrap:wrap;}
+  .category-head h2{font-size:clamp(1.7rem,2.8vw,2.3rem);}
+  .category-head p{margin:.4rem 0 0; color:var(--ink-soft); max-width:46ch; font-size:.95rem;}
+  .category-count{font-size:.78rem; color:var(--mint); text-transform:uppercase; letter-spacing:.08em; white-space:nowrap; font-weight:800;}
+
+  .grid{
+    display:grid; gap:1.15rem;
+    grid-template-columns:repeat(auto-fill, minmax(190px,1fr));
+  }
+
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:18px;
+    overflow:hidden; box-shadow:var(--shadow);
+    display:flex; flex-direction:column;
+  }
+  .swatch{
+    position:relative; aspect-ratio:1/1;
+    background:hsl(var(--h) var(--s) var(--l));
+    display:flex; align-items:flex-start; justify-content:flex-end;
+    padding:.5rem;
+  }
+  .swatch .initial{
+    position:absolute; left:.65rem; bottom:-.55rem;
+    font-family:"Fredoka",sans-serif; font-weight:600; font-size:3.6rem;
+    color:rgba(255,255,255,.55); mix-blend-mode:overlay; line-height:1;
+    pointer-events:none;
+  }
+  .swatch-img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .swatch-dots{position:absolute; left:0; right:0; bottom:.5rem; display:flex; justify-content:center; gap:.35rem;}
+  .dot{width:6px; height:6px; border-radius:99px; border:none; padding:0; cursor:pointer; background:rgba(255,255,255,.7); box-shadow:0 0 0 1px rgba(0,0,0,.3);}
+  .dot.active{background:#fff; box-shadow:0 0 0 1.5px rgba(0,0,0,.3);}
+  .badge-low{
+    background:rgba(15,12,17,.6); color:#fff; font-size:.68rem; font-weight:700;
+    padding:.25rem .55rem; border-radius:99px; letter-spacing:.02em;
+  }
+  .info{padding:.9rem .95rem 1.05rem; display:flex; flex-direction:column; gap:.3rem; flex:1;}
+  .code{font-size:.68rem; color:var(--ink-faint); letter-spacing:.05em; margin:0;}
+  .name{font-size:.92rem; font-weight:600; line-height:1.3; margin:0; flex:1;}
+  .price{
+    font-family:"Fredoka",sans-serif; font-weight:600; font-size:1.25rem; color:var(--accent);
+    margin:.25rem 0 0; font-variant-numeric:tabular-nums;
+  }
+
+  footer{
+    max-width:1180px; margin:0 auto; padding:2.4rem 1.5rem 3rem;
+    border-top:1px solid var(--line); color:var(--ink-faint); font-size:.82rem;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem;
+  }
+
+  /* ---------- card interactivity ---------- */
+  .card:hover{box-shadow:0 1px 2px rgba(29,26,30,.06), 0 16px 34px -16px rgba(29,26,30,.28); transform:translateY(-2px); transition:transform .15s ease, box-shadow .15s ease;}
+  @media (prefers-reduced-motion: reduce){ .card:hover{transform:none;} }
+  .view-btn{
+    margin-top:.85rem; width:100%;
+    padding:.78rem 1rem; border-radius:99px;
+    border:none; background:var(--accent); color:var(--accent-ink);
+    font-family:"Fredoka",sans-serif; font-size:.95rem; font-weight:600; letter-spacing:.01em;
+    cursor:pointer;
+  }
+  .view-btn:hover{background:color-mix(in srgb, var(--accent) 88%, black);}
+  .view-btn:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+  /* ---------- modal ---------- */
+  .modal-overlay{
+    position:fixed; inset:0; z-index:50;
+    background:rgba(15,12,17,.55); backdrop-filter:blur(4px);
+    display:flex; align-items:center; justify-content:center; padding:1.2rem;
+  }
+  .modal-overlay[hidden]{display:none;}
+  .modal{
+    position:relative;
+    background:var(--surface); border-radius:22px; overflow:hidden;
+    width:100%; max-width:460px; max-height:88vh; overflow-y:auto;
+    box-shadow:0 30px 70px -20px rgba(0,0,0,.45);
+  }
+  .modal-swatch{
+    position:relative; aspect-ratio:1/1;
+    background:hsl(var(--h) var(--s) var(--l));
+    display:flex; align-items:flex-end; padding:1rem;
+  }
+  .modal-swatch.has-photo{padding:0;}
+  .modal-img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .modal-dots{bottom:.9rem;}
+  .modal-dots .dot{width:7px; height:7px;}
+  .modal-initial{
+    font-family:"Fredoka",sans-serif; font-weight:600; font-size:5rem;
+    color:rgba(255,255,255,.55); mix-blend-mode:overlay; line-height:1;
+  }
+  .modal-close{
+    position:absolute; top:.8rem; right:.8rem; width:2rem; height:2rem; z-index:2;
+    border-radius:99px; border:none; background:rgba(15,12,17,.55); color:#fff;
+    font-size:1.2rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  }
+  .modal-close:hover{background:rgba(15,12,17,.75);}
+  .modal-body{padding:1.4rem 1.5rem 1.7rem;}
+  .modal-body .code{font-size:.72rem;}
+  .modal-body h3{font-size:1.5rem; margin-top:.2rem;}
+  .modal-meta{display:flex; align-items:center; gap:.8rem; flex-wrap:wrap; margin:.7rem 0 1.1rem;}
+  .modal-price{
+    font-family:"Fredoka",sans-serif; font-weight:600; font-size:1.5rem; color:var(--accent); font-variant-numeric:tabular-nums;
+  }
+  .modal-units{
+    font-size:.75rem; font-weight:700; padding:.3rem .7rem; border-radius:99px;
+    background:var(--surface-2); color:var(--mint);
+  }
+  .modal-units.low{background:var(--accent); color:var(--accent-ink);}
+  .modal-desc{color:var(--ink-soft); font-size:.95rem; line-height:1.65; white-space:pre-line;}
+  .modal-note{
+    background:var(--surface-2); border-radius:12px; padding:.75rem .9rem;
+    font-size:.85rem; color:var(--ink); line-height:1.5; margin:0 0 1rem;
+  }
+  .modal-note b{color:var(--mint);}
+  .modal-note-title{
+    font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--mint); margin:0 0 .5rem;
+  }
+  .tone-chips{display:flex; flex-wrap:wrap; gap:.55rem .4rem; padding-top:.35rem;}
+  .tone-qty{
+    position:absolute; top:-.45rem; right:-.2rem; pointer-events:none;
+    font-size:.58rem; font-weight:800; line-height:1; padding:.16rem .34rem; border-radius:99px;
+    background:var(--accent); color:var(--accent-ink); letter-spacing:.02em;
+  }
+  .tone-chip{
+    position:relative; font:inherit; font-size:.78rem; font-weight:700; padding:.35rem .8rem; border-radius:99px; cursor:pointer;
+    border:1px solid var(--line); background:var(--surface); color:var(--ink-soft);
+  }
+  .tone-chip:hover{border-color:var(--mint); color:var(--ink);}
+  .tone-chip[aria-selected="true"]{background:var(--mint); border-color:var(--mint); color:var(--mint-ink);}
+  .tone-chip:focus-visible{outline:2px solid var(--mint); outline-offset:2px;}
+  .tone-desc{margin:.7rem 0 0; font-size:.85rem; line-height:1.5; color:var(--ink);}
+</style>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="wordmark">MAVELDI <b>beauty</b></div>
+    <nav class="pills">
+      <a href="#rostro">Rostro <span>11</span></a>
+      <a href="#ojos">Ojos <span>7</span></a>
+      <a href="#labios">Labios <span>5</span></a>
+      <a href="#cuidado-facial">Cuidado Facial <span>10</span></a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <p class="eyebrow">Nueva importación · Setiembre 2026</p>
+  <h1>Todo lo que necesita tu tocador.</h1>
+  <p class="lede">33 referencias de la colección AMUSE —bases, sombras, labiales y skincare— organizadas por categoría. Stock único por producto, sin reposición.</p>
+  <div class="stats">
+    <div class="stat"><b>33</b><span>Referencias</span></div>
+    <div class="stat"><b>78</b><span>Unidades en stock</span></div>
+    <div class="stat"><b>4</b><span>Categorías</span></div>
+  </div>
+</section>
+
+<main>
+  <section class="category-band" id="rostro">
+    <div class="category">
+      <div class="category-head">
+        <div>
+          <h2>Rostro</h2>
+          <p>Bases, correctores, polvos y bronceadores para un acabado natural o de cobertura total.</p>
+        </div>
+        <span class="category-count">11 productos</span>
+      </div>
+      <div class="grid">
+        <article class="card" data-search="fijador de rostro mini spray am640">
+          <div class="swatch" style="--h:20;--s:70%;--l:62%"><span class="initial">F</span></div>
+          <div class="info"><p class="code">AM640</p><h3 class="name">Fijador de Rostro Mini Spray</h3><p class="price">S/ 16</p></div>
+        </article>
+        <article class="card" data-search="iluminador luna de miel bl3033mix-bm">
+          <div class="swatch" style="--h:20;--s:70%;--l:55%"><span class="initial">I</span></div>
+          <div class="info"><p class="code">BL3033MIX-BM</p><h3 class="name">Iluminador Luna de Miel</h3><p class="price">S/ 25</p></div>
+        </article>
+        <article class="card" data-search="polvos compactos matte kl116mix-a">
+          <div class="swatch" style="--h:20;--s:70%;--l:70%">
+            <span class="badge-low">¡Última unidad!</span><span class="initial">P</span>
+          </div>
+          <div class="info"><p class="code">KL116MIX-A</p><h3 class="name">Polvos Compactos Matte</h3><p class="price">S/ 20</p></div>
+        </article>
+        <article class="card" data-search="compacto de crema y polvos surtido kl149ass">
+          <div class="swatch" style="--h:20;--s:70%;--l:58%">
+            <span class="badge-low">¡Última unidad!</span><span class="initial">C</span>
+          </div>
+          <div class="info"><p class="code">KL149ASS</p><h3 class="name">Compacto de Crema y Polvos Surtido</h3><p class="price">S/ 30</p></div>
+        </article>
+        <article class="card" data-search="corrector iluminador filter me kl269mix">
+          <div class="swatch" style="--h:20;--s:70%;--l:64%"><span class="initial">C</span></div>
+          <div class="info"><p class="code">KL269MIX</p><h3 class="name">Corrector Iluminador "Filter Me"</h3><p class="price">S/ 17</p></div>
+        </article>
+        <article class="card" data-search="base de maquillaje my power kl285mix-a">
+          <div class="swatch" style="--h:20;--s:70%;--l:56%">
+            <span class="badge-low">¡Última unidad!</span><span class="initial">B</span>
+          </div>
+          <div class="info"><p class="code">KL285MIX-A</p><h3 class="name">Base de Maquillaje "My Power"</h3><p class="price">S/ 30</p></div>
+        </article>
+        <article class="card" data-search="bronceadores sunny vibes kl298mix">
+          <div class="swatch" style="--h:20;--s:70%;--l:68%"><span class="initial">B</span></div>
+          <div class="info"><p class="code">KL298MIX</p><h3 class="name">Bronceadores "Sunny Vibes"</h3><p class="price">S/ 15</p></div>
+        </article>
+        <article class="card" data-search="polvos compactos matte diamond kl301mix-a">
+          <div class="swatch" style="--h:20;--s:70%;--l:60%"><span class="initial">P</span></div>
+          <div class="info"><p class="code">KL301MIX-A</p><h3 class="name">Polvos Compactos Matte Diamond</h3><p class="price">S/ 20</p></div>
+        </article>
+        <article class="card" data-search="base de maquillaje faultless kl304mix-a">
+          <div class="swatch" style="--h:20;--s:70%;--l:66%"><span class="initial">B</span></div>
+          <div class="info"><p class="code">KL304MIX-A</p><h3 class="name">Base de Maquillaje "Faultless"</h3><p class="price">S/ 26</p></div>
+        </article>
+        <article class="card" data-search="polvos sueltos banana exhibidor kl320">
+          <div class="swatch" style="--h:20;--s:70%;--l:54%"><span class="initial">P</span></div>
+          <div class="info"><p class="code">KL320</p><h3 class="name">Polvos Sueltos Banana (Exhibidor)</h3><p class="price">S/ 24</p></div>
+        </article>
+        <article class="card" data-search="cosmic blur prebase facial exhibidor kl335">
+          <div class="swatch" style="--h:20;--s:70%;--l:72%"><span class="initial">C</span></div>
+          <div class="info"><p class="code">KL335</p><h3 class="name">Cosmic Blur — Prebase Facial (Exhibidor)</h3><p class="price">S/ 25</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="category-band" id="ojos">
+    <div class="category">
+      <div class="category-head">
+        <div>
+          <h2>Ojos</h2>
+          <p>Paletas de sombras, delineador, máscaras de pestañas y cejas.</p>
+        </div>
+        <span class="category-count">7 productos</span>
+      </div>
+      <div class="grid">
+        <article class="card" data-search="paleta de sombras me encantan las donas fk9747mix">
+          <div class="swatch" style="--h:265;--s:45%;--l:58%"><span class="initial">P</span></div>
+          <div class="info"><p class="code">FK9747MIX</p><h3 class="name">Paleta de Sombras "Me Encantan las Donas"</h3><p class="price">S/ 16</p></div>
+        </article>
+        <article class="card" data-search="paleta de sombras lovers lane fk9783">
+          <div class="swatch" style="--h:265;--s:45%;--l:66%">
+            <span class="badge-low">¡Última unidad!</span><span class="initial">P</span>
+          </div>
+          <div class="info"><p class="code">FK9783</p><h3 class="name">Paleta de Sombras "Lovers Lane"</h3><p class="price">S/ 40</p></div>
+        </article>
+        <article class="card" data-search="paleta de sombras pan dulce fk9678">
+          <div class="swatch" style="--h:265;--s:45%;--l:72%"><span class="initial">P</span></div>
+          <div class="info"><p class="code">FK9678</p><h3 class="name">Paleta de Sombras Pan Dulce</h3><p class="price">S/ 35</p></div>
+        </article>
+        <article class="card" data-search="delineador de ojos negro lavish pn40">
+          <div class="swatch" style="--h:265;--s:45%;--l:50%"><span class="initial">D</span></div>
+          <div class="info"><p class="code">PN40</p><h3 class="name">Delineador de Ojos Negro "Lavish"</h3><p class="price">S/ 20</p></div>
+        </article>
+        <article class="card" data-search="mascara de pestañas con fibra lash obsession fm086">
+          <div class="swatch" style="--h:265;--s:45%;--l:60%">
+            <span class="badge-low">¡Última unidad!</span><span class="initial">M</span>
+          </div>
+          <div class="info"><p class="code">FM086</p><h3 class="name">Máscara de Pestañas con Fibra "Lash Obsession"</h3><p class="price">S/ 22</p></div>
+        </article>
+        <article class="card" data-search="mascara de pestañas transparente y marron fm096">
+          <div class="swatch" style="--h:265;--s:45%;--l:68%"><span class="initial">M</span></div>
+          <div class="info"><p class="code">FM096</p><h3 class="name">Máscara de Pestañas Transparente</h3><p class="price">S/ 15</p></div>
+        </article>
+        <article class="card" data-search="matte pro brow fk9575-1">
+          <div class="swatch" style="--h:265;--s:45%;--l:56%"><span class="initial">M</span></div>
+          <div class="info"><p class="code">FK9575-1</p><h3 class="name">Matte Pro Brow</h3><p class="price">S/ 25</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="category-band" id="labios">
+    <div class="category">
+      <div class="category-head">
+        <div>
+          <h2>Labios</h2>
+          <p>Brillos, tintes y bálsamos con color.</p>
+        </div>
+        <span class="category-count">5 productos</span>
+      </div>
+      <div class="grid">
+        <article class="card" data-search="balsamo grande con color xl bt99mix">
+          <div class="swatch" style="--h:345;--s:65%;--l:56%"><span class="initial">B</span></div>
+          <div class="info"><p class="code">BT99MIX</p><h3 class="name">Bálsamo Grande con Color XL</h3><p class="price">S/ 18</p></div>
+        </article>
+        <article class="card" data-search="brillo de labios kissing fruit lip020-m">
+          <div class="swatch" style="--h:345;--s:65%;--l:64%"><span class="initial">B</span></div>
+          <div class="info"><p class="code">LIP020-M</p><h3 class="name">Brillo de Labios "Kissing Fruit"</h3><p class="price">S/ 12</p></div>
+        </article>
+        <article class="card" data-search="brillo de labios juicy squeeze exhibidor lip2234">
+          <div class="swatch" style="--h:345;--s:65%;--l:52%"><span class="initial">J</span></div>
+          <div class="info"><p class="code">LIP2234</p><h3 class="name">Brillo de Labios "Juicy Squeeze" (Exhibidor)</h3><p class="price">S/ 13</p></div>
+        </article>
+        <article class="card" data-search="tinte de labios luscious lip2170">
+          <div class="swatch" style="--h:345;--s:65%;--l:60%"><span class="initial">T</span></div>
+          <div class="info"><p class="code">LIP2170</p><h3 class="name">Tinte de Labios "Luscious"</h3><p class="price">S/ 16</p></div>
+        </article>
+        <article class="card" data-search="kiss my lips lip7333">
+          <div class="swatch" style="--h:345;--s:65%;--l:48%">
+            <span class="badge-low">¡Última unidad!</span><span class="initial">K</span>
+          </div>
+          <div class="info"><p class="code">LIP7333</p><h3 class="name">Kiss My Lips</h3><p class="price">S/ 30</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="category-band" id="cuidado-facial">
+    <div class="category">
+      <div class="category-head">
+        <div>
+          <h2>Cuidado Facial</h2>
+          <p>Sérums, mascarillas, tónicos y limpiadores para la rutina diaria.</p>
+        </div>
+        <span class="category-count">10 productos</span>
+      </div>
+      <div class="grid">
+        <article class="card" data-search="toallitas desmaquillantes colageno exhibidor am623">
+          <div class="swatch" style="--h:165;--s:45%;--l:74%"><span class="initial">T</span></div>
+          <div class="info"><p class="code">AM623</p><h3 class="name">Toallitas Desmaquillantes con Colágeno (Exhibidor)</h3><p class="price">S/ 7</p></div>
+        </article>
+        <article class="card" data-search="desmaquillante de ojos no more tears sk005">
+          <div class="swatch" style="--h:165;--s:45%;--l:62%"><span class="initial">D</span></div>
+          <div class="info"><p class="code">SK005</p><h3 class="name">Desmaquillante de Ojos "No More Tears"</h3><p class="price">S/ 30</p></div>
+        </article>
+        <article class="card" data-search="tonico equilibrante holy toner exhibidor sk006">
+          <div class="swatch" style="--h:165;--s:45%;--l:78%"><span class="initial">T</span></div>
+          <div class="info"><p class="code">SK006</p><h3 class="name">Tónico Equilibrante "Holy Toner" (Exhibidor)</h3><p class="price">S/ 25</p></div>
+        </article>
+        <article class="card" data-search="limpiador facial de melocoton sk021">
+          <div class="swatch" style="--h:165;--s:45%;--l:80%">
+            <span class="badge-low">¡Última unidad!</span><span class="initial">L</span>
+          </div>
+          <div class="info"><p class="code">SK021</p><h3 class="name">Limpiador Facial de Melocotón</h3><p class="price">S/ 40</p></div>
+        </article>
+        <article class="card" data-search="mascarilla de noche drink all night sk009">
+          <div class="swatch" style="--h:165;--s:45%;--l:58%"><span class="initial">M</span></div>
+          <div class="info"><p class="code">SK009</p><h3 class="name">Mascarilla de Noche "Drink All Night"</h3><p class="price">S/ 40</p></div>
+        </article>
+        <article class="card" data-search="mascarilla hidratante sweet hydro sk034">
+          <div class="swatch" style="--h:165;--s:45%;--l:70%"><span class="initial">M</span></div>
+          <div class="info"><p class="code">SK034</p><h3 class="name">Mascarilla Hidratante "Sweet Hydro"</h3><p class="price">S/ 45</p></div>
+        </article>
+        <article class="card" data-search="serum de escualano eye repair sk012">
+          <div class="swatch" style="--h:165;--s:45%;--l:66%"><span class="initial">S</span></div>
+          <div class="info"><p class="code">SK012</p><h3 class="name">Sérum de Escualano "Eye Repair"</h3><p class="price">S/ 60</p></div>
+        </article>
+        <article class="card" data-search="serum facial de colageno sk044">
+          <div class="swatch" style="--h:165;--s:45%;--l:56%"><span class="initial">S</span></div>
+          <div class="info"><p class="code">SK044</p><h3 class="name">Sérum Facial de Colágeno</h3><p class="price">S/ 45</p></div>
+        </article>
+        <article class="card" data-search="crema para ojos dream rest acido glicolico sk023">
+          <div class="swatch" style="--h:165;--s:45%;--l:52%"><span class="initial">C</span></div>
+          <div class="info"><p class="code">SK023</p><h3 class="name">Crema para Ojos "Dream Rest" con Ácido Glicólico</h3><p class="price">S/ 60</p></div>
+        </article>
+        <article class="card" data-search="barra facial con retinol oasis skin sk016">
+          <div class="swatch" style="--h:165;--s:45%;--l:64%"><span class="initial">B</span></div>
+          <div class="info"><p class="code">SK016</p><h3 class="name">Barra Facial con Retinol "Oasis Skin"</h3><p class="price">S/ 60</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>MAVELDI beauty — colección AMUSE</span>
+  <span>Precios en soles (S/). Stock sujeto a disponibilidad, unidades únicas.</span>
+</footer>
+
+<div class="modal-overlay" id="modal-overlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+    <button class="modal-close" id="modal-close" aria-label="Cerrar">×</button>
+    <div class="modal-swatch" id="modal-swatch"></div>
+    <div class="modal-body">
+      <p class="code" id="modal-code"></p>
+      <h3 id="modal-name"></h3>
+      <div class="modal-meta">
+        <span class="modal-price" id="modal-price"></span>
+        <span class="modal-units" id="modal-units"></span>
+      </div>
+      <div class="modal-note" id="modal-note" hidden></div>
+      <p class="modal-desc" id="modal-desc"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const masthead = document.querySelector('.masthead');
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > lastScrollY + 6 && y > 120) {
+      masthead.classList.add('hide');
+    } else if (y < lastScrollY - 6 || y <= 120) {
+      masthead.classList.remove('hide');
+    }
+    lastScrollY = y;
+  }, { passive: true });
+
+  const PRODUCTS = {
+    "AM623": { units: 2, desc: "¡Desmaquíllate y dale un 'boost' de colágeno a tu piel! 🌟 Las toallitas desmaquillantes Amuse AM623 son mucho más que un limpiador. Diseñadas para eliminar con facilidad el maquillaje más pesado (¡incluso el rímel a prueba de agua!), su fórmula enriquecida con colágeno reafirma e hidrata tu rostro en un solo paso. Dile adiós a la piel acartonada o grasosa y dale la bienvenida a un rostro limpio, elástico y radiante antes de dormir. ¡Tu rutina nocturna nunca fue tan fácil y nutritiva!" },
+    "AM640": { units: 3, desc: "¡Tu maquillaje intacto, vayas donde vayas! El Mini Setting Spray Amuse AM640 es el secreto mejor guardado para un look fresco las 24 horas. Su fórmula ligera blinda tu piel contra el sudor y la humedad, evitando que el maquillaje se cuartee. ¿Lo mejor? Su tamaño mini es perfecto para llevarlo en la cartera y revivir tu rostro con un toque refrescante en cualquier momento. Cruelty-free, práctico y poderoso." },
+    "BL3033MIX-BM": { units: 2, desc: "¡El secreto para un rostro radiante en una sola paleta! ✨ Consigue ese efecto de \"recién salida de vacaciones\" con la paleta Amuse Honey Moon Glow (BL3033MIX-BM). Diseñada con una textura sedosa de alta pigmentación, combina tonos vibrantes de rubor, bronceadores cálidos e iluminadores deslumbrantes que se difuminan como un sueño. Ya sea para un look natural de día o algo ultra glamoroso de noche, tienes todo lo necesario para esculpir, dar color y brillar. ¡Llévate el combo completo de rostro y ahorra espacio en tu cosmetiquero!" },
+    "BT99MIX": { units: 3, tones: [{ name: "🍉 Watermelon", desc: "Un tono rosa claro y refrescante que aporta un brillo muy sutil y natural." }, { name: "🍓 Strawberry", desc: "Un clásico tono rojo rosado jugoso, ideal para dar un aspecto saludable a los labios." }, { name: "🍇 Raspberry", desc: "Un tono de bayas suave y un poco más sofisticado, perfecto para un toque de color ligeramente más profundo." }], desc: "¡Dale a tus labios el tratamiento XL que se merecen! 💋 El bálsamo labial Amuse Tinted Big Balm XL (BT99MIX) es la fusión definitiva entre hidratación intensa y un toque de color suave y jugoso. Diseñado para quienes buscan una solución rápida de deslizar e ir (swipe-and-go), su aplicador extra grueso desliza una fórmula cremosa que se funde en tus labios, reteniendo la humedad al instante y previniendo las molestas grietas. Consigue unos labios con aspecto saludable, con volumen sutil y un brillo irresistible en cuestión de segundos." },
+    "FK9747MIX": { units: 4, tones: [{ name: "Strawberry Donut", qty: 2, desc: "Tonos rosas y nudes neutrales combinados con destellos brillantes para looks románticos." }, { name: "Chocolate Donut", qty: 1, desc: "Una combinación clásica de tonos neutros, cafés y dorados ideal para el uso diario." }, { name: "Lemon Donut", qty: 1, desc: "Colores amarillos y neutros vibrantes que aportan un toque fresco y divertido a los ojos." }], desc: "¡Dale a tu mirada un toque irresistible y dulce! 🍩 Con la colección de paletas Amuse I'm Donuts About You (FK9747MIX), crear looks deliciosos nunca fue tan divertido. Cada minipaleta viene con 9 tonos perfectamente combinados entre acabados mate aterciopelados y brillos intensos. Inspiradas en tus donas favoritas —fresa, chocolate y limón—, estas sombras tienen una textura cremosa que se difumina como un sueño. Su tamaño portátil las hace ideales para llevar en tu bolso y transformar tu maquillaje de día a un look ultra glamoroso de noche en segundos. ¡Pruébalas todas y endulza tu mirada!" },
+    "FK9783": { units: 1, desc: "¡Enamórate de tu mirada a primera vista! 💖 La paleta de sombras Amuse Lovers Lane (FK9783) llegó para convertirse en tu nueva obsesión. Con una hermosa selección de tonos cálidos y románticos, combina mates ultra suaves con brillos reflectivos de alta intensidad que le darán vida a tus ojos. Su fórmula aterciopelada y de alta pigmentación se difumina con total facilidad, permitiéndote pasar de un look sutil para el día a un estilo ultra seductor para tus noches de cita. ¡Es momento de contar tu propia historia de amor a través del maquillaje!" },
+    "FM086": { units: 1, desc: "¡Desbloquea una mirada magnética y sin límites! 👁️✨ Olvídate de las pestañas postizas y los procesos complicados. La máscara Amuse Lash Obsession (FM086) cuenta con una fórmula innovadora impregnada de microfibras que se adhieren a tus pestañas naturales para multiplicar su largo, volumen y curvatura desde la primera pasada. Su cepillo de precisión abraza cada pelo de raíz a punta, separándolos a la perfección y evitando los molestos grumos. Consigue ese efecto dramático y magnético que dura todo el día. ¡Prepárate para obsesionarte con tus propias pestañas!" },
+    "FM096": { units: 2, desc: "¡Cejas rebeldes y pestañas caídas bajo control al instante! 👁️✨ Consigue el look limpio, orgánico y fresco que es tendencia con la máscara dual Amuse Tame Me Away! (FM096). Este gel fijador está diseñado para domar y esculpir tus cejas durante todo el día sin dejarlas tiesas ni con residuos blancos. Además, es el aliado perfecto para levantar tus pestañas de forma sutil, aportando definición y un brillo saludable. Disponible en tono transparente, es el producto \"obligatorio\" en tu rutina diaria para lucir impecable sin esfuerzo. ¡Peina, fija y olvídate de los retoques!" },
+    "KL116MIX-A": { units: 1, tones: [{ name: "Natural", desc: "Un tono medio-claro, pensado para pieles claras con subtonos neutros." }], desc: "¡Dile adiós al brillo y hola a un rostro de porcelana! 👑 El polvo compacto Amuse Matte Pressed Powder (KL116MIX-A) es el héroe diario que tu piel necesita. Su fórmula ligera y de larga duración sella tu maquillaje sin dejar esa molesta sensación pesada o acartonada. Con una cobertura modulable que se adapta a lo que buscas, controla la oleosidad en las zonas críticas dejando un acabado mate impecable. Viene equipado con su propia esponja aplicadora y espejo, convirtiéndose en el aliado perfecto para retocar y lucir fabulosa en cualquier momento del día. ¡Un cutis liso, suave y mate al instante!" },
+    "KL149ASS": { units: 1, tones: [{ name: "Dark Beige", desc: "Diseñado para pieles de tonos medianos a oscuros con subtonos cálidos o neutros." }], desc: "¡Tu piel perfecta a la mitad de tiempo y en un solo empaque! ⏱️✨ Dile adiós a cargar con miles de productos pesados. El compacto híbrido Amuse Cream & Powder (KL149ASS) es el dúo dinámico definitivo: crema perfeccionadora por un lado para corregir imperfecciones y un polvo ultrafino por el otro para sellar con un acabado aterciopelado. Consigue una cobertura de ligera a media, construible y ultra natural que controla el brillo durante todo el día. Viene equipado con un espejo amplio y su propia esponja, ideal para transformar tu rostro estés donde estés. ¡El \"todo en uno\" que tu rutina diaria necesitaba!" },
+    "KL269MIX": { units: 2, tones: [{ name: "Fair", desc: "Tono muy claro." }, { name: "Vanilla", desc: "Tono medio-claro con subtono neutro/cálido." }], desc: "¡Dile adiós a las imperfecciones y hola al \"efecto filtro\" en la vida real! 📸✨ El corrector iluminador Amuse Filter Me (KL269MIX) es el aliado definitivo para borrar el cansancio en segundos. Su fórmula cremosa de cobertura completa abraza tu piel para difuminar ojeras, manchas y rojeces de forma instantánea sin dejar un acabado pesado. Lo mejor de todo es su doble acción: mientras corrige perfectamente, ilumina las zonas clave del rostro para una mirada despierta, radiante y fresca. ¡Tu piel impecable y lista para la cámara todo el día!" },
+    "KL285MIX-A": { units: 1, tones: [{ name: "A2", desc: "Tono claro-medio (habitualmente equivalente a un Natural Beige o color arena claro). Es ideal para pieles claras que no llegan a ser extremadamente pálidas." }], desc: "¡Libera el poder de una piel impecable y natural! ✨ Descubre la base líquida Amuse My Power (KL285MIX-A), tu nueva aliada para unificar el rostro sin perder frescura. Su fórmula ligera ofrece una cobertura media y modulable que camufla imperfecciones y rojeces al instante, fundiéndose como una segunda piel. Olvídate del molesto \"efecto máscara\" o acartonado; con My Power, disfrutas de un acabado fresco, terso y radiante que resiste tu ritmo diario. ¡Tu belleza natural, potenciada al máximo!" },
+    "KL298MIX": { units: 3, tones: [{ name: "Lit", desc: "Bronceador muy claro y luminoso, ideal para dar un destello sutil y natural a pieles claras." }, { name: "Happy", desc: "Tono claro a medio neutro-cálido, perfecto para dar un aspecto saludable a pieles claras sin dejar marcas naranjas." }, { name: "Joy", desc: "El tono más profundo de la gama, ideal para esculpir facciones de manera uniforme en pieles oscuras." }], desc: "¡Lleva el verano en tu rostro durante todo el año! ☀️ Contornea, define y dale a tu piel un brillo cálido e irresistible con los bronceadores Amuse Sunny Vibes (KL298MIX). Su suave fórmula en polvo se desliza como seda sobre las mejillas, permitiéndote imitar ese hermoso tono dorado de un día bajo el sol sin salir de casa. Con 6 variaciones de tonos cálidos que se adaptan a cualquier tipo de piel, es perfecto tanto para un sutil look diario como para un contorno más dramático. Su empaque todo en uno viene equipado con espejo y brocha pequeña, convirtiéndose en el compañero ideal para tus retoques urbanos o de viaje. ¡Consigue un rostro radiante y lleno de vida al instante!" },
+    "KL301MIX-A": { units: 2, tones: [{ name: "Tono #03", desc: "Polvo compacto para pieles medias, ideal para unificar y sellar la base con subtonos cálidos." }, { name: "Tono #04", desc: "Perfecto para pieles medias-oscuras o bronceadas que buscan un acabado mate." }], desc: "¡Un acabado impecable y libre de brillo que dura todo el día! 💎 Controla la oleosidad de tu rostro con los polvos compactos Amuse Diamond Matte (KL301MIX-A). Su fórmula ligera con un hermoso relieve en forma de diamante se funde con tu piel sin esfuerzo, sellando tu base líquida favorita y dejando un acabado aterciopelado irresistible. Olvídate de los retoques pesados o el \"efecto pastel\"; este compacto matifica las zonas críticas manteniendo tu piel fresca. Equipado con espejo y borla aplicadora, es el tesoro portátil que no puede faltar en tu cartera. ¡Luce un cutis liso, mate y perfecto a donde vayas!" },
+    "KL304MIX-A": { units: 2, tones: [{ name: "Tono 2 (Marfil / Ivory)", desc: "Un tono claro estándar, adecuado para pieles claras con subtonos neutros o ligeramente cálidos." }, { name: "Tono 4 (Natural / Soft Beige)", desc: "El tono más oscuro de la gama." }], desc: "¡Dile adiós a las imperfecciones con un acabado de foto! 📸✨ Consigue una piel de porcelana al instante con la base líquida Amuse Faultless (KL304MIX-A). Diseñada para quienes lo quieren todo, su fórmula innovadora ofrece una alta cobertura uniforme que camufla imperfecciones, manchas y rojeces con total facilidad. Lo mejor es que, a pesar de su gran poder cubriente, se siente increíblemente ligera sobre la piel, adaptándose sin esfuerzo y dejando un acabado mate impecable. Despídete de los brillos faciales y luce un rostro liso, suave y perfecto durante todo el día. ¡Tu piel, pero en su versión más impecable!" },
+    "KL320": { units: 3, desc: "¡El toque maestro para un rostro iluminado y sin pizca de brillo! 🍌✨ Lleva tu técnica de sellado al siguiente nivel con el polvo suelto Amuse Banana Loose Powder (KL320). Su textura ultra fina y sedosa es el secreto definitivo para hacer baking, fijar tu corrector por horas y camuflar las líneas de expresión. Gracias a su sutil subtono amarillo, neutraliza instantáneamente las rojeces y las ojeras oscuras, aportando una luminosidad natural y un acabado mate aterciopelado digno de una foto. ¡Olvídate del brillo facial y presume una piel de porcelana libre de crueldad animal!" },
+    "KL335": { units: 2, desc: "¡Prepara tu piel para un acabado fuera de este mundo! 🌌✨ Consigue un rostro de seda al instante con el primer Amuse Cosmic Blur (KL335). Su innovadora fórmula en gel ultraligera actúa como un filtro de la vida real, difuminando la apariencia de poros abiertos y rellenando suavemente las líneas de expresión. Al crear un lienzo perfectamente liso, permite que tu base se deslice como un sueño y se mantenga uniforme por mucho más tiempo sin acumularse en los pliegues. Su empaque estrellado te va a encantar, pero sus resultados en tu piel te van a obsesionar. ¡El primer paso obligatorio para un maquillaje profesional!" },
+    "LIP020-M": { units: 6, tonesTitle: "Tonos disponibles", tones: [{ name: "🍓 Strawberry", qty: 1, desc: "Transparente con un levísimo matiz rosado/rojizo." }, { name: "🍬 Candy Gum", qty: 2, desc: "Totalmente transparente." }, { name: "🍉 Watermelon", qty: 1, desc: "Transparente con un ligero toque fresco." }, { name: "🍒 Cherry", qty: 1, desc: "Transparente con un matiz rojo cereza suave." }, { name: "🍎 Apple", qty: 1, desc: "Totalmente transparente." }], desc: "¡El brillo más jugoso y el regreso del clásico que amas! 🍓✨ Prepárate para una explosión de brillo y nostalgia con el Amuse Kissing Fruit Lip Gloss (LIP020-M). Este brillo labial con aplicador en roll-on se desliza con suavidad para dejar tus labios ultra jugosos, hidratados y con un destello cristalino irresistible. Su fórmula ligera y de alta absorción evita las grietas causadas por la resequedad diaria mientras los envuelve en 8 adictivos aromas frutales. ¡El toque retro, fresco y \"glossy\" que tus labios necesitan para brillar todo el día!" },
+    "LIP2170": { units: 4, tonesTitle: "Unidades únicas", tones: [{ name: "Cherry", desc: "Un rojo cereza vibrante y clásico que aporta luminosidad instantánea al rostro." }, { name: "Boundless", desc: "Un tono cálido y versátil, ideal para un look natural y sin esfuerzo todos los días." }, { name: "Rebel", desc: "Un color con más personalidad, perfecto para destacar con un toque moderno y audaz." }, { name: "Juicy", desc: "Un tono fresco y frutal que deja un aspecto jugoso y saludable en los labios." }], desc: "¡Color vívido y sensación cero pesada que dura horas! 💋✨ Dale a tus labios el toque fresco y coreano que está rompiendo las redes con el Amuse Luscious Lip Tint (LIP2170). Su innovadora fórmula weightless a base de agua se absorbe al instante, dejando un tinte luminoso y natural tan cómodo que olvidarás que lo llevas puesto. Lo mejor es que es completamente a prueba de manchas (smudge-proof) y besos, reteniendo la hidratación todo el día. Úsalo en tus labios o dale un toque de rubor natural a tus mejillas. ¡Un acabado jugoso, magnético y libre de transferencia!" },
+    "LIP2234": { units: 4, tones: [{ name: "🍓 Strawberry", qty: 2, desc: "Deja un acabado de alto brillo translúcido con un sutil e imperceptible matiz rosado y un aroma dulce a fresas." }, { name: "🍉 Watermelon", qty: 1, desc: "Totalmente transparente y cristalino en los labios, con una esencia fresca a sandía." }, { name: "🍒 Cherry", qty: 1, desc: "Aporta un acabado húmedo tipo espejo con un levísimo e ideal destello rojizo muy natural." }], desc: "¡Una explosión de brillo frutal para tus labios! 🍓🍉 Prepárate para lucir la sonrisa más fresca y provocativa con el brillo labial Amuse Juicy Squeeze (LIP2234). Inspirado en la frescura de las frutas, este gloss en tubo flexible desliza una fórmula ultra brillante que atrapa la luz desde cualquier ángulo, creando un efecto óptico de mayor volumen al instante. Su textura ligera y sedosa mantiene tus labios hidratados, suaves y envueltos en aromas deliciosos todo el día sin dejar esa molesta sensación pegajosa. ¡El toque \"juicy\" y divertido que no querrás sacar de tu bolso!" },
+    "LIP7333": { units: 1, desc: "¡Tu colección completa de labiales en una sola paleta! 💋✨ Despídete del desorden en tu cosmetiquero y dale la bienvenida a la paleta Amuse Kiss My Lips (LIP7333). Con 12 tonos mates espectaculares que van desde los nudes más sutiles hasta rojos y bayas intensos, tienes infinitas opciones para combinar. Su textura cremosa se desliza con suavidad dejando un acabado mate aterciopelado que no reseca tus labios. Juega, mezcla tonos y crea tu color personalizado perfecto para cada día o noche de fiesta. ¡El secreto para unos labios perfectos está en tus manos!" },
+    "PN40": { units: 4, desc: "¡Una mirada penetrante, profunda y de larga duración! 🖤✨ Consigue el delineado perfecto sin complicaciones con el lápiz retráctil Amuse Lavish Black (PN40). Su fórmula de alta pigmentación desliza un color negro ultra mate e intenso desde la primera pasada, ideal tanto para un sutil delineado diario como para un ahumado dramático de noche. Olvídate de los tajadores: su práctico diseño giratorio (twist pencil) te da una punta siempre lista. Es suave con tus ojos, se difumina como un sueño y se fija para resistir tu ritmo diario. ¡El básico infaltable que transformará tu mirada en segundos!" },
+    "SK005": { units: 2, desc: "¡Quítate el maquillaje, no las lágrimas! 👁️💧 Dile adiós al sufrimiento nocturno con el desmaquillante de ojos Amuse No More Tears (SK005). Diseñado especialmente para la delicada piel del contorno de ojos, su fórmula hipoalergénica con proteínas de seda derrite instantáneamente el rímel a prueba de agua y los delineadores más pesados sin necesidad de frotar ni irritar. Consigue una limpieza profunda, fresca y reconfortante en segundos. ¡El paso final perfecto para irte a dormir con una mirada limpia, calmada y libre de residuos grasosos!" },
+    "SK006": { units: 2, desc: "¡El paso sagrado para una piel radiante, fresca y en perfecto balance! 👼✨ Dale a tu rostro el cuidado diario que se merece con el Amuse Holy Toner (SK006). Este tónico equilibrante cuenta con una fórmula líquida ultra ligera que se absorbe en segundos, devolviéndole la hidratación y frescura a tu piel después de limpiarla. Actúa como un escudo que regula el pH, calma las zonas sensibles y nutre el cutis para recibir tus sérums o cremas favoritas. ¡Olvídate de la piel tirante u opaca y despierta un brillo saludable y natural todos los días!" },
+    "SK009": { units: 2, desc: "¡Dale a tu piel un trago de hidratación profunda mientras duermes! 🌌💦 Despierta con el rostro de tus sueños gracias a la mascarilla nocturna Amuse Drink All Night (SK009). Mientras tú descansas, esta poderosa fórmula trabaja sellando la humedad natural de la piel y rellenándola desde adentro para combatir los signos de fatiga y la resequedad extrema. Su textura ligera y de rápida absorción crea un escudo nutritivo que no mancha tu almohada, transformando la piel opaca en un lienzo ultrasuave, jugoso y radiante al amanecer. ¡El verdadero sueño reparador hecho skincare!" },
+    "SK012": { units: 2, desc: "¡Despierta tu mirada y dile adiós a las líneas de expresión! 👁️✨ Devuélvele la vida a tu mirada cansada con el Amuse Eye Repair Serum (SK012). Este poderoso sérum para el contorno de ojos está formulado con escualano, el ingrediente estrella que bloquea la hidratación profunda sin dejar sensación grasosa. Cargado de antioxidantes protectores, actúa alisando, calmando y rejuveneciendo la delicada piel de tus ojos mientras combate los signos del envejecimiento. ¡Consigue una mirada fresca, radiante y descansada en cada aplicación!" },
+    "SK016": { units: 2, desc: "¡El poder rejuvenecedor del retinol en un innovador formato 'On-The-Go'! 🌟 Reaprende a cuidar tu piel con la barra facial Amuse Oasis Skin Retinol Stick (SK016). Diseñada para combatir las líneas de expresión y renovar la textura cutánea de la forma más limpia posible, esta barra sólida desliza una fórmula concentrada de retinol que estimula la regeneración celular mientras duermes. Olvídate de los goteos o de desperdiciar producto en tus manos: aplícalo directamente sobre las zonas críticas (rostro y cuello) y despierta con una piel visiblemente más suave, firme y rejuvenecida. ¡Tu dosis nocturna de juventud, sin complicaciones!" },
+    "SK021": { units: 1, desc: "¡Una explosión de frescura y aroma frutal para tu limpieza diaria! 🍑✨ Transforma tu rutina con el limpiador facial Amuse Peach Facial Cleanser (SK021). Su suave fórmula remueve con total facilidad las impurezas acumuladas durante el día, el exceso de grasa y los restos de maquillaje, dejando tu rostro completamente limpio pero sin esa molesta sensación de tirantez. Envuelve tu piel en una espuma ligera y un delicioso y dulce aroma a melocotón que convertirá tu skincare en el momento más esperado del día. ¡Una piel suave, tersa y fresca al instante!" },
+    "SK023": { units: 3, desc: "¡Dale un descanso profundo a tu mirada mientras duermes! 🌌✨ Despierta con ojos frescos, iluminados y libres de fatiga con la crema de ojos Amuse Dream Rest (SK023). Formulada con ácido glicólico, esta crema nocturna realiza una microexfoliación ultra suave que remueve las células muertas y acelera la renovación de la delicada piel del contorno de ojos. Es el secreto definitivo para difuminar las líneas de expresión y desvanecer las ojeras oscuras. ¡Dale a tu mirada el verdadero sueño reparador y luce un aspecto renovado cada mañana!" },
+    "SK034": { units: 2, desc: "¡El shot de hidratación más dulce y refrescante para tu rostro! 🍯🌹 Dale a tu piel el mimo que se merece con la colección de mascarillas Amuse Sweet Hydro (SK034). Este mix combina los poderes naturales de la miel, el agua de rosas y la baya de acai en una fórmula ultra hidratante que rescata el cutis apagado o reseco en minutos. Perfectas para tu rutina de spa en casa, calman la irritación, devuelven la elasticidad y dejan un brillo saludable irresistible. ¡Elige tu ingrediente favorito y regálale a tu rostro un momento de frescura absoluta!" },
+    "SK044": { units: 2, desc: "¡El 'shot' diario de colágeno que tu piel necesita para brillar! ✨ Repone la firmeza y juventud de tu rostro con el sérum Amuse Collagen Youthful Glow Getter (SK044). Su fórmula avanzada y ultraligera penetra en las capas de la piel para restaurar la elasticidad perdida y combatir la opacidad en tiempo récord. Con solo unas gotas diarias, sella una hidratación profunda y despierta un brillo natural e irresistible desde adentro hacia afuera. ¡Dale a tu rostro el efecto tensor, saludable y fresco que te hará lucir espectacular sin esfuerzo!" },
+    "FK9678": { units: 3, desc: "¡Dale a tu mirada un toque tan dulce e irresistible como el pan recién horneado! 🥖✨ Enamórate de la paleta Amuse Pan Dulce (FK9678), una colección de 9 sombras de ojos inspiradas en tus piezas de panadería favoritas. Combina tonos claros, medios y profundos en acabados principalmente mate junto a un destello luminoso perfecto para iluminar los puntos clave de tus ojos. Con nombres tan divertidos como Concha Rosa, Cuernito y Pan de Muerto, su textura cremosa y de alta pigmentación se difumina de maravilla para crear desde un look neutro de día hasta algo súper colorido y marcado. ¡La combinación más dulce, suave y creativa para tu cosmetiquero!" },
+    "FK9575-1": { units: 3, desc: "¡Cejas perfectas, simétricas y naturales en segundos! 👑✨ Olvídate de sufrir intentando que tus cejas queden iguales. El kit Amuse Matte Pro Brow (FK9575-1) en el tono Soft Brown es tu solución definitiva para enmarcar tu mirada de forma profesional. Este set todo en uno incluye sombras mate de textura ultra fina y alta pigmentación que rellenan los huequitos con total suavidad. ¿El verdadero truco? Viene equipado con plantillas plásticas exclusivas para que diseñes la forma ideal sin margen de error, además de su propio aplicador." }
+  };
+
+  const PHOTOS = {
+    "LIP020-M": ["imagenes-productos/LIP020-M-1.jpg", "imagenes-productos/LIP020-M-2.jpg", "imagenes-productos/LIP020-M-3.jpg"],
+    "AM640": ["imagenes-productos/AM640-1.jpg", "imagenes-productos/AM640-2.jpg"],
+    "BL3033MIX-BM": ["imagenes-productos/BL3033MIX-BM-1.jpg", "imagenes-productos/BL3033MIX-BM-2.jpg", "imagenes-productos/BL3033MIX-BM-3.jpg"],
+    "KL116MIX-A": ["imagenes-productos/KL116MIX-A-1.jpg", "imagenes-productos/KL116MIX-A-2.jpg", "imagenes-productos/KL116MIX-A-3.jpg"],
+    "LIP2170": ["imagenes-productos/LIP2170-1.jpg", "imagenes-productos/LIP2170-2.jpg"],
+    "LIP2234": ["imagenes-productos/LIP2234-1.jpg", "imagenes-productos/LIP2234-2.jpg"],
+    "KL149ASS": ["imagenes-productos/KL149ASS-1.jpg"],
+    "KL269MIX": ["imagenes-productos/KL269MIX-1.jpg", "imagenes-productos/KL269MIX-2.jpg"],
+    "KL285MIX-A": ["imagenes-productos/KL285MIX-A-1.jpg"],
+    "KL298MIX": ["imagenes-productos/KL298MIX-1.jpg"],
+    "KL301MIX-A": ["imagenes-productos/KL301MIX-A-1.jpg", "imagenes-productos/KL301MIX-A-2.jpg"],
+    "KL304MIX-A": ["imagenes-productos/KL304MIX-A-1.jpg", "imagenes-productos/KL304MIX-A-2.jpg"],
+    "KL320": ["imagenes-productos/KL320-1.jpg", "imagenes-productos/KL320-2.jpg"],
+    "KL335": ["imagenes-productos/KL335-1.jpg", "imagenes-productos/KL335-2.jpg"],
+    "FK9678": ["imagenes-productos/FK9678-1.jpg"],
+    "FK9783": ["imagenes-productos/FK9783-1.jpg", "imagenes-productos/FK9783-2.jpg"],
+    "FK9747MIX": ["imagenes-productos/FK9747MIX-1.jpg", "imagenes-productos/FK9747MIX-2.jpg"],
+    "FK9575-1": ["imagenes-productos/FK9575-1-1.jpg"],
+    "FM086": ["imagenes-productos/FM086-1.jpg"],
+    "FM096": ["imagenes-productos/FM096-1.jpg", "imagenes-productos/FM096-2.jpg", "imagenes-productos/FM096-3.jpg"],
+    "PN40": ["imagenes-productos/PN40-1.jpg", "imagenes-productos/PN40-2.jpg"],
+    "BT99MIX": ["imagenes-productos/BT99MIX-1.jpg", "imagenes-productos/BT99MIX-2.jpg"],
+    "LIP7333": ["imagenes-productos/LIP7333-1.jpg", "imagenes-productos/LIP7333-2.jpg"],
+    "AM623": ["imagenes-productos/AM623-1.jpg"],
+    "SK005": ["imagenes-productos/SK005-1.jpg"],
+    "SK006": ["imagenes-productos/SK006-1.jpg"],
+    "SK021": ["imagenes-productos/SK021-1.jpg"],
+    "SK009": ["imagenes-productos/SK009-1.jpg"],
+    "SK012": ["imagenes-productos/SK012-1.jpg", "imagenes-productos/SK012-2.jpg"],
+    "SK023": ["imagenes-productos/SK023-1.jpg"],
+    "SK034": ["imagenes-productos/SK034-1.jpg", "imagenes-productos/SK034-2.jpg"],
+    "SK044": ["imagenes-productos/SK044-1.jpg"],
+    "SK016": ["imagenes-productos/SK016-1.jpg", "imagenes-productos/SK016-2.jpg", "imagenes-productos/SK016-3.jpg"]
+  };
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const AUTO_ADVANCE_MS = 3500;
+
+  const PHOTO_POSITION = {
+    "imagenes-productos/KL269MIX-2.jpg": "50% 85%",
+    "imagenes-productos/SK016-2.jpg": "50% 45%"
+  };
+
+  function attachGallery(container, photos, altText){
+    const isModal = container.id === 'modal-swatch';
+    const img = document.createElement('img');
+    img.className = isModal ? 'modal-img' : 'swatch-img';
+    img.src = photos[0];
+    img.style.objectPosition = PHOTO_POSITION[photos[0]] || '50% 50%';
+    img.alt = altText;
+    img.loading = 'lazy';
+    container.appendChild(img);
+
+    if (photos.length <= 1) return null;
+
+    const dots = document.createElement('div');
+    dots.className = 'swatch-dots' + (isModal ? ' modal-dots' : '');
+    let idx = 0;
+    let timer = null;
+
+    function show(i){
+      idx = i;
+      img.src = photos[idx];
+      img.style.objectPosition = PHOTO_POSITION[photos[idx]] || '50% 50%';
+      dots.querySelectorAll('.dot').forEach((d, di) => d.classList.toggle('active', di === idx));
+    }
+    function next(){ show((idx + 1) % photos.length); }
+    function stop(){ if (timer) { clearInterval(timer); timer = null; } }
+    function start(){ if (!reduceMotion) { stop(); timer = setInterval(next, AUTO_ADVANCE_MS); } }
+
+    photos.forEach((src, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `Foto ${i + 1} de ${photos.length}`);
+      dot.addEventListener('click', e => { e.stopPropagation(); show(i); start(); });
+      dots.appendChild(dot);
+    });
+    container.appendChild(dots);
+    container.addEventListener('mouseenter', stop);
+    container.addEventListener('mouseleave', start);
+    start();
+    return stop;
+  }
+
+  function applyPhotos(){
+    document.querySelectorAll('.card').forEach(card => {
+      const code = card.querySelector('.code').textContent;
+      const photos = PHOTOS[code];
+      if (!photos || !photos.length) return;
+      const swatch = card.querySelector('.swatch');
+      const badge = swatch.querySelector('.badge-low');
+      swatch.innerHTML = '';
+      swatch.classList.add('has-photo');
+      attachGallery(swatch, photos, card.querySelector('.name').textContent);
+      if (badge) swatch.appendChild(badge);
+    });
+  }
+
+  const overlay = document.getElementById('modal-overlay');
+  const modalSwatch = document.getElementById('modal-swatch');
+  const modalCode = document.getElementById('modal-code');
+  const modalName = document.getElementById('modal-name');
+  const modalPrice = document.getElementById('modal-price');
+  const modalUnits = document.getElementById('modal-units');
+  const modalNote = document.getElementById('modal-note');
+  const modalDesc = document.getElementById('modal-desc');
+  const modalClose = document.getElementById('modal-close');
+  let lastFocused = null;
+  let modalGalleryStop = null;
+
+  function buildModalMedia(code, card){
+    if (modalGalleryStop) { modalGalleryStop(); modalGalleryStop = null; }
+    modalSwatch.innerHTML = '';
+    const photos = PHOTOS[code];
+    if (photos && photos.length) {
+      modalSwatch.classList.add('has-photo');
+      modalSwatch.removeAttribute('style');
+      modalGalleryStop = attachGallery(modalSwatch, photos, card.querySelector('.name').textContent);
+    } else {
+      modalSwatch.classList.remove('has-photo');
+      modalSwatch.setAttribute('style', card.querySelector('.swatch').getAttribute('style'));
+      const initial = document.createElement('span');
+      initial.className = 'modal-initial';
+      initial.textContent = card.querySelector('.initial') ? card.querySelector('.initial').textContent : card.querySelector('.name').textContent.trim().charAt(0);
+      modalSwatch.appendChild(initial);
+    }
+  }
+
+  function renderTones(tones, title){
+    modalNote.innerHTML = '';
+    const heading = document.createElement('p');
+    heading.className = 'modal-note-title';
+    heading.textContent = title || 'Tono disponible';
+    const chips = document.createElement('div');
+    chips.className = 'tone-chips';
+    chips.setAttribute('role', 'tablist');
+    const desc = document.createElement('p');
+    desc.className = 'tone-desc';
+    function select(i){
+      [...chips.children].forEach((c, ci) => c.setAttribute('aria-selected', String(ci === i)));
+      desc.textContent = tones[i].desc;
+    }
+    tones.forEach((tone, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'tone-chip';
+      b.setAttribute('role', 'tab');
+      b.textContent = tone.name;
+      if (tone.qty) {
+        const q = document.createElement('span');
+        q.className = 'tone-qty';
+        q.textContent = tone.qty + ' und';
+        b.appendChild(q);
+      }
+      b.addEventListener('click', () => select(i));
+      chips.appendChild(b);
+    });
+    modalNote.append(heading, chips, desc);
+    select(0);
+  }
+
+  function openModal(card){
+    const code = card.querySelector('.code').textContent;
+    const data = PRODUCTS[code];
+    if (!data) return;
+    buildModalMedia(code, card);
+    modalCode.textContent = code;
+    modalName.textContent = card.querySelector('.name').textContent;
+    modalPrice.textContent = card.querySelector('.price').textContent;
+    modalUnits.textContent = data.units <= 2
+      ? `¡Solo ${data.units} unidad${data.units > 1 ? 'es' : ''} disponible${data.units > 1 ? 's' : ''}!`
+      : `${data.units} unidades disponibles`;
+    modalUnits.classList.toggle('low', data.units <= 2);
+    modalDesc.textContent = data.desc;
+    if (data.tones) {
+      renderTones(data.tones, data.tonesTitle);
+      modalNote.hidden = false;
+    } else {
+      modalNote.hidden = true;
+    }
+    overlay.hidden = false;
+    document.body.style.overflow = 'hidden';
+    lastFocused = document.activeElement;
+    modalClose.focus();
+  }
+  function closeModal(){
+    overlay.hidden = true;
+    document.body.style.overflow = '';
+    if (modalGalleryStop) { modalGalleryStop(); modalGalleryStop = null; }
+    if (lastFocused) lastFocused.focus();
+  }
+
+  applyPhotos();
+
+  document.querySelectorAll('.card').forEach(card => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'view-btn';
+    btn.textContent = 'Ver';
+    btn.addEventListener('click', () => openModal(card));
+    card.querySelector('.info').appendChild(btn);
+  });
+  modalClose.addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !overlay.hidden) closeModal(); });
+</script>
+
+</body>
+</html>
